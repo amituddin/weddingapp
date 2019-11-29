@@ -1,0 +1,353 @@
+<ion-header>
+  <ion-navbar color="light">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      Home
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only solid>
+        <ion-icon name="apps"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content style="background:url(assets/img/home.jpg) repeat left;" padding="20px">
+  <div *ngIf="(undangan | async)?.length===0">
+    <button ion-button full large color="batik">Example Of Theme</button>
+    <ion-slides style="width:100%;height:60vw;">
+      <ion-slide style="background:url(assets/img/slide1.png) no-repeat center;background-size:cover;"></ion-slide>
+      <ion-slide style="background:url(assets/img/slide2.jpg) no-repeat center;background-size:cover;"></ion-slide>
+      <ion-slide style="background:url(assets/img/slide3.jpg) no-repeat center;background-size:cover;"></ion-slide>
+    </ion-slides>
+    <form [formGroup]="registerForm" novalidate>
+      <ion-item>
+        <ion-label>Pilih Tema</ion-label>
+        <ion-select formControlName="tema" interface="popover">
+          <ion-option value="batik.jpg">Batik</ion-option>
+          <ion-option value="bunga.jpg">Bunga</ion-option>
+          <ion-option value="modern.jpg">Modern</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label>Pilih Bahasa</ion-label>
+        <ion-select formControlName="bahasa" interface="popover">
+          <ion-option value="Indonesia">Indonesia</ion-option>
+          <ion-option value="Jawa">Jawa</ion-option>
+        </ion-select>
+      </ion-item>
+      <button ion-button full color="light" (click)="save()" [disabled]="!registerForm.valid">Input Data Undangan</button>
+    </form>
+  </div>
+  <div *ngFor="let data of undangan | async">
+    <form [formGroup]="updateForm" novalidate *ngIf="data.julukanPria ==='empty'">
+      <ion-item>
+        <ion-label stacked>Julukan Pria</ion-label>
+        <ion-input #julukanPria formControlName="julukanPria" type="text" (change)="elementChanged(julukanPria)" placeholder="isikan julukan pria" [class.invalid]="!updateForm.controls.julukanPria.valid && (julukanPriaChanged || submitAttempt2)"></ion-input>
+      </ion-item>
+      <ion-item class="error-message" *ngIf="!updateForm.controls.julukanPria.valid  && (julukanPriaChanged || submitAttempt2)">
+        <p>Silakan isi julukan pria</p>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Nama Pria</ion-label>
+        <ion-input #namaPria formControlName="namaPria" type="text" (change)="elementChanged(namaPria)" placeholder="isikan nama pria" [class.invalid]="!updateForm.controls.namaPria.valid && (namaPriaChanged || submitAttempt2)"></ion-input>
+      </ion-item>
+      <ion-item class="error-message" *ngIf="!updateForm.controls.namaPria.valid  && (namaPriaChanged || submitAttempt2)">
+        <p>Silakan isi nama pria</p>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Julukan Wanita</ion-label>
+        <ion-input #julukanWanita formControlName="julukanWanita" type="text" (change)="elementChanged(julukanWanita)" placeholder="isikan julukan wanita" [class.invalid]="!updateForm.controls.julukanWanita.valid && (julukanWanitaChanged || submitAttempt2)"></ion-input>
+      </ion-item>
+      <ion-item class="error-message" *ngIf="!updateForm.controls.julukanWanita.valid  && (njulukanWanitaChanged || submitAttempt2)">
+        <p>Silakan isi julukan wanita</p>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Nama Wanita</ion-label>
+        <ion-input #namaWanita formControlName="namaWanita" type="text" (change)="elementChanged(namaWanita)" placeholder="isikan nama wanita" [class.invalid]="!updateForm.controls.namaWanita.valid && (namaWanitaChanged || submitAttempt2)"></ion-input>
+      </ion-item>
+      <ion-item class="error-message" *ngIf="!updateForm.controls.namaWanita.valid  && (namaWanitaChanged || submitAttempt2)">
+        <p>Silakan isi nama wanita</p>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Nama Bapak Pria</ion-label>
+        <ion-input #bapakPria formControlName="bapakPria" type="text" (change)="elementChanged(bapakPria)" placeholder="isikan nama bapak pria" [class.invalid]="!updateForm.controls.bapakPria.valid && (bapakPriaChanged || submitAttempt2)"></ion-input>
+      </ion-item>
+      <ion-item class="error-message" *ngIf="!updateForm.controls.bapakPria.valid  && (bapakPriaChanged || submitAttempt2)">
+        <p>Silakan isi nama bapak pria</p>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Nama Ibu Pria</ion-label>
+        <ion-input #ibuPria formControlName="ibuPria" type="text" (change)="elementChanged(ibuPria)" placeholder="isikan nama ibu pria" [class.invalid]="!updateForm.controls.ibuPria.valid && (ibuPriaChanged || submitAttempt2)"></ion-input>
+      </ion-item>
+      <ion-item class="error-message" *ngIf="!updateForm.controls.ibuPria.valid  && (ibuPriaChanged || submitAttempt2)">
+        <p>Silakan isi nama ibu pria</p>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Nama Bapak Wanita</ion-label>
+        <ion-input #bapakWanita formControlName="bapakWanita" type="text" (change)="elementChanged(bapakWanita)" placeholder="isikan nama bapak wanita" [class.invalid]="!updateForm.controls.bapakWanita.valid && (bapakWanitaChanged || submitAttempt2)"></ion-input>
+      </ion-item>
+      <ion-item class="error-message" *ngIf="!updateForm.controls.bapakWanita.valid  && (bapakWanitaChanged || submitAttempt2)">
+        <p>Silakan isi nama bapak wanita</p>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Nama Ibu Wanita</ion-label>
+        <ion-input #ibuWanita formControlName="ibuWanita" type="text" (change)="elementChanged(ibuWanita)" placeholder="isikan nama ibu wanita" [class.invalid]="!updateForm.controls.ibuWanita.valid && (ibuWanitaChanged || submitAttempt2)"></ion-input>
+      </ion-item>
+      <ion-item class="error-message" *ngIf="!updateForm.controls.ibuWanita.valid  && (ibuWanitaChanged || submitAttempt2)">
+        <p>Silakan isi nama ibu wanita</p>
+      </ion-item>
+      <button style="margin-top: 10px;" ion-button full color="light" (click)="update()" [disabled]="!updateForm.valid">Simpan</button>
+    </form>
+
+    <form [formGroup]="updateForm2" novalidate *ngIf="data.julukanPria !='empty' && data.alamatPria ==='empty'">
+      <ion-item>
+        <ion-label stacked>Alamat Pria</ion-label>
+        <ion-input #alamatPria formControlName="alamatPria" type="text" (change)="elementChanged(alamatPria)" placeholder="isikan alamat pria" [class.invalid]="!updateForm2.controls.alamatPria.valid && (alamatPriaChanged || submitAttempt3)"></ion-input>
+      </ion-item>
+      <ion-item class="error-message" *ngIf="!updateForm2.controls.alamatPria.valid  && (alamatPriaChanged || submitAttempt3)">
+        <p>Silakan isi alamat pria</p>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Alamat Wanita</ion-label>
+        <ion-input #alamatWanita formControlName="alamatWanita" type="text" (change)="elementChanged(alamatWanita)" placeholder="isikan alamat wanita" [class.invalid]="!updateForm2.controls.alamatWanita.valid && (alamatWanitaChanged || submitAttempt3)"></ion-input>
+      </ion-item>
+      <ion-item class="error-message" *ngIf="!updateForm2.controls.alamatWanita.valid  && (alamatWanitaChanged || submitAttempt3)">
+        <p>Silakan isi alamat wanita</p>
+      </ion-item>
+      <ion-item>
+        <ion-label>Pilih Hari Akad</ion-label>
+        <ion-select formControlName="hariAkad" interface="popover">
+          <ion-option value="Senin">Senin</ion-option>
+          <ion-option value="Selasa">Selasa</ion-option>
+          <ion-option value="Rabu">Rabu</ion-option>
+          <ion-option value="Kamis">Kamis</ion-option>
+          <ion-option value="Jumat">Jumat</ion-option>
+          <ion-option value="Sabtu">Sabtu</ion-option>
+          <ion-option value="Minggu">Minggu</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label>Tanggal Akad</ion-label>
+        <ion-datetime displayFormat="MM/DD/YYYY" formControlName="tanggalAkad"></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label>Jam Akad</ion-label>
+        <ion-datetime displayFormat="HH:mm" formControlName="jamAkad"></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Tempat Akad</ion-label>
+        <ion-input #tempatAkad formControlName="tempatAkad" type="text" (change)="elementChanged(tempatAkad)" placeholder="isikan Tempat Akad" [class.invalid]="!updateForm2.controls.tempatAkad.valid && (tempatAkadChanged || submitAttempt3)"></ion-input>
+      </ion-item>
+      <ion-item class="error-message" *ngIf="!updateForm2.controls.tempatAkad.valid  && (tempatAkadChanged || submitAttempt3)">
+        <p>Silakan isi Tempat Akad</p>
+      </ion-item>
+      <ion-item>
+        <ion-label>Pilih Hari Resepsi</ion-label>
+        <ion-select formControlName="hariResepsi" interface="popover">
+          <ion-option value="Senin">Senin</ion-option>
+          <ion-option value="Selasa">Selasa</ion-option>
+          <ion-option value="Rabu">Rabu</ion-option>
+          <ion-option value="Kamis">Kamis</ion-option>
+          <ion-option value="Jumat">Jumat</ion-option>
+          <ion-option value="Sabtu">Sabtu</ion-option>
+          <ion-option value="Minggu">Minggu</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label>Tanggal Resepsi</ion-label>
+        <ion-datetime displayFormat="MM/DD/YYYY" formControlName="tanggalResepsi"></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label>Jam Resepsi</ion-label>
+        <ion-datetime displayFormat="HH:mm" formControlName="jamResepsi"></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Tempat Resepsi</ion-label>
+        <ion-input #tempatResepsi formControlName="tempatResepsi" type="text" (change)="elementChanged(tempatResepsi)" placeholder="isikan tempat Resepsi" [class.invalid]="!updateForm2.controls.tempatResepsi.valid && (tempatResepsiChanged || submitAttempt3)"></ion-input>
+      </ion-item>
+      <ion-item class="error-message" *ngIf="!updateForm2.controls.tempatResepsi.valid  && (tempatResepsiChanged || submitAttempt3)">
+        <p>Silakan isi tempat Resepsi</p>
+      </ion-item>
+      <button style="margin-top: 10px;" ion-button full color="light" (click)="update2()" [disabled]="!updateForm2.valid">Simpan</button>
+    </form>
+
+    <div *ngIf="data.alamatPria != 'empty' && edit1 === 'false' && edit2 === 'false' && edit3 === 'false'">
+      <button style="margin-top: 10px;" ion-button full color="primary" (click)="ubah1()">Ubah Tema / Bahasa</button>
+      <button style="margin-top: 10px;" ion-button full color="primary" (click)="ubah2()">Ubah Biodata</button>
+      <button style="margin-top: 10px;" ion-button full color="primary" (click)="ubah3()">Ubah Alamat / Jadwal</button>
+    </div>
+
+    <div *ngIf="data.alamatPria != 'empty' && edit1 === 'true'">
+      <button ion-button full large color="batik">Example Of Theme</button>
+      <ion-slides style="width:100%;height:60vw;">
+        <ion-slide style="background:url(assets/img/slide1.png) no-repeat center;background-size:cover;"></ion-slide>
+        <ion-slide style="background:url(assets/img/slide2.jpg) no-repeat center;background-size:cover;"></ion-slide>
+        <ion-slide style="background:url(assets/img/slide3.jpg) no-repeat center;background-size:cover;"></ion-slide>
+      </ion-slides>
+      <form [formGroup]="Form1" novalidate>
+        <ion-item>
+          <ion-label>Pilih Tema</ion-label>
+          <ion-select formControlName="tema" interface="popover">
+            <ion-option value="batik.jpg">Batik</ion-option>
+            <ion-option value="bunga.jpg">Bunga</ion-option>
+            <ion-option value="modern.jpg">Modern</ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label>Pilih Bahasa</ion-label>
+          <ion-select formControlName="bahasa" interface="popover">
+            <ion-option value="Indonesia">Indonesia</ion-option>
+            <ion-option value="Jawa">Jawa</ion-option>
+          </ion-select>
+        </ion-item>
+        <button style="margin-top: 10px;" ion-button full color="light" (click)="save1()" [disabled]="!Form1.valid">Update Data Undangan</button>
+        <button style="margin-top: 10px;" ion-button full color="light" (click)="cancel()">Batal</button>
+      </form>
+    </div>
+
+    <div *ngIf="data.alamatPria != 'empty' && edit2 === 'true'">
+      <div *ngFor="let data of undangan | async">
+        <form [formGroup]="Form2" novalidate>
+          <ion-item>
+            <ion-label stacked>Julukan Pria</ion-label>
+            <ion-input #julukanPria formControlName="julukanPria" type="text" (change)="elementChanged(julukanPria)" placeholder="isikan julukan pria" [class.invalid]="!Form2.controls.julukanPria.valid && (julukanPriaChanged || submitAttempt2)"></ion-input>
+          </ion-item>
+          <ion-item class="error-message" *ngIf="!Form2.controls.julukanPria.valid  && (julukanPriaChanged || submitAttempt2)">
+            <p>Silakan isi julukan pria</p>
+          </ion-item>
+          <ion-item>
+            <ion-label stacked>Nama Pria</ion-label>
+            <ion-input #namaPria formControlName="namaPria" type="text" (change)="elementChanged(namaPria)" placeholder="isikan nama pria" [class.invalid]="!Form2.controls.namaPria.valid && (namaPriaChanged || submitAttempt2)"></ion-input>
+          </ion-item>
+          <ion-item class="error-message" *ngIf="!Form2.controls.namaPria.valid  && (namaPriaChanged || submitAttempt2)">
+            <p>Silakan isi nama pria</p>
+          </ion-item>
+          <ion-item>
+            <ion-label stacked>Julukan Wanita</ion-label>
+            <ion-input #julukanWanita formControlName="julukanWanita" type="text" (change)="elementChanged(julukanWanita)" placeholder="isikan julukan wanita" [class.invalid]="!Form2.controls.julukanWanita.valid && (julukanWanitaChanged || submitAttempt2)"></ion-input>
+          </ion-item>
+          <ion-item class="error-message" *ngIf="!Form2.controls.julukanWanita.valid  && (njulukanWanitaChanged || submitAttempt2)">
+            <p>Silakan isi julukan wanita</p>
+          </ion-item>
+          <ion-item>
+            <ion-label stacked>Nama Wanita</ion-label>
+            <ion-input #namaWanita formControlName="namaWanita" type="text" (change)="elementChanged(namaWanita)" placeholder="isikan nama wanita" [class.invalid]="!Form2.controls.namaWanita.valid && (namaWanitaChanged || submitAttempt2)"></ion-input>
+          </ion-item>
+          <ion-item class="error-message" *ngIf="!Form2.controls.namaWanita.valid  && (namaWanitaChanged || submitAttempt2)">
+            <p>Silakan isi nama wanita</p>
+          </ion-item>
+          <ion-item>
+            <ion-label stacked>Nama Bapak Pria</ion-label>
+            <ion-input #bapakPria formControlName="bapakPria" type="text" (change)="elementChanged(bapakPria)" placeholder="isikan nama bapak pria" [class.invalid]="!Form2.controls.bapakPria.valid && (bapakPriaChanged || submitAttempt2)"></ion-input>
+          </ion-item>
+          <ion-item class="error-message" *ngIf="!Form2.controls.bapakPria.valid  && (bapakPriaChanged || submitAttempt2)">
+            <p>Silakan isi nama bapak pria</p>
+          </ion-item>
+          <ion-item>
+            <ion-label stacked>Nama Ibu Pria</ion-label>
+            <ion-input #ibuPria formControlName="ibuPria" type="text" (change)="elementChanged(ibuPria)" placeholder="isikan nama ibu pria" [class.invalid]="!Form2.controls.ibuPria.valid && (ibuPriaChanged || submitAttempt2)"></ion-input>
+          </ion-item>
+          <ion-item class="error-message" *ngIf="!Form2.controls.ibuPria.valid  && (ibuPriaChanged || submitAttempt2)">
+            <p>Silakan isi nama ibu pria</p>
+          </ion-item>
+          <ion-item>
+            <ion-label stacked>Nama Bapak Wanita</ion-label>
+            <ion-input #bapakWanita formControlName="bapakWanita" type="text" (change)="elementChanged(bapakWanita)" placeholder="isikan nama bapak wanita" [class.invalid]="!Form2.controls.bapakWanita.valid && (bapakWanitaChanged || submitAttempt2)"></ion-input>
+          </ion-item>
+          <ion-item class="error-message" *ngIf="!Form2.controls.bapakWanita.valid  && (bapakWanitaChanged || submitAttempt2)">
+            <p>Silakan isi nama bapak wanita</p>
+          </ion-item>
+          <ion-item>
+            <ion-label stacked>Nama Ibu Wanita</ion-label>
+            <ion-input #ibuWanita formControlName="ibuWanita" type="text" (change)="elementChanged(ibuWanita)" placeholder="isikan nama ibu wanita" [class.invalid]="!Form2.controls.ibuWanita.valid && (ibuWanitaChanged || submitAttempt2)"></ion-input>
+          </ion-item>
+          <ion-item class="error-message" *ngIf="!Form2.controls.ibuWanita.valid  && (ibuWanitaChanged || submitAttempt2)">
+            <p>Silakan isi nama ibu wanita</p>
+          </ion-item>
+          <button style="margin-top: 10px;" ion-button full color="light" (click)="save2()" [disabled]="!Form2.valid">Ubah</button>
+          <button style="margin-top: 10px;" ion-button full color="light" (click)="cancel()">Batal</button>
+        </form>
+      </div>
+    </div>
+
+    <div *ngIf="data.alamatPria != 'empty' && edit3 === 'true'">
+      <div *ngFor="let data of undangan | async">
+        <form [formGroup]="Form3" novalidate>
+          <ion-item>
+            <ion-label stacked>Alamat Pria</ion-label>
+            <ion-input #alamatPria formControlName="alamatPria" type="text" (change)="elementChanged(alamatPria)" placeholder="isikan alamat pria" [class.invalid]="!Form3.controls.alamatPria.valid && (alamatPriaChanged || submitAttempt3)"></ion-input>
+          </ion-item>
+          <ion-item class="error-message" *ngIf="!Form3.controls.alamatPria.valid  && (alamatPriaChanged || submitAttempt3)">
+            <p>Silakan isi alamat pria</p>
+          </ion-item>
+          <ion-item>
+            <ion-label stacked>Alamat Wanita</ion-label>
+            <ion-input #alamatWanita formControlName="alamatWanita" type="text" (change)="elementChanged(alamatWanita)" placeholder="isikan alamat wanita" [class.invalid]="!Form3.controls.alamatWanita.valid && (alamatWanitaChanged || submitAttempt3)"></ion-input>
+          </ion-item>
+          <ion-item class="error-message" *ngIf="!Form3.controls.alamatWanita.valid  && (alamatWanitaChanged || submitAttempt3)">
+            <p>Silakan isi alamat wanita</p>
+          </ion-item>
+          <ion-item>
+            <ion-label>Pilih Hari Akad</ion-label>
+            <ion-select formControlName="hariAkad" interface="popover">
+              <ion-option value="Senin">Senin</ion-option>
+              <ion-option value="Selasa">Selasa</ion-option>
+              <ion-option value="Rabu">Rabu</ion-option>
+              <ion-option value="Kamis">Kamis</ion-option>
+              <ion-option value="Jumat">Jumat</ion-option>
+              <ion-option value="Sabtu">Sabtu</ion-option>
+              <ion-option value="Minggu">Minggu</ion-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label>Tanggal Akad</ion-label>
+            <ion-datetime displayFormat="MM/DD/YYYY" formControlName="tanggalAkad"></ion-datetime>
+          </ion-item>
+          <ion-item>
+            <ion-label>Jam Akad</ion-label>
+            <ion-datetime displayFormat="HH:mm" formControlName="jamAkad"></ion-datetime>
+          </ion-item>
+          <ion-item>
+            <ion-label stacked>Tempat Akad</ion-label>
+            <ion-input #tempatAkad formControlName="tempatAkad" type="text" (change)="elementChanged(tempatAkad)" placeholder="isikan Tempat Akad" [class.invalid]="!Form3.controls.tempatAkad.valid && (tempatAkadChanged || submitAttempt3)"></ion-input>
+          </ion-item>
+          <ion-item class="error-message" *ngIf="!Form3.controls.tempatAkad.valid  && (tempatAkadChanged || submitAttempt3)">
+            <p>Silakan isi Tempat Akad</p>
+          </ion-item>
+          <ion-item>
+            <ion-label>Pilih Hari Resepsi</ion-label>
+            <ion-select formControlName="hariResepsi" interface="popover">
+              <ion-option value="Senin">Senin</ion-option>
+              <ion-option value="Selasa">Selasa</ion-option>
+              <ion-option value="Rabu">Rabu</ion-option>
+              <ion-option value="Kamis">Kamis</ion-option>
+              <ion-option value="Jumat">Jumat</ion-option>
+              <ion-option value="Sabtu">Sabtu</ion-option>
+              <ion-option value="Minggu">Minggu</ion-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label>Tanggal Resepsi</ion-label>
+            <ion-datetime displayFormat="MM/DD/YYYY" formControlName="tanggalResepsi"></ion-datetime>
+          </ion-item>
+          <ion-item>
+            <ion-label>Jam Resepsi</ion-label>
+            <ion-datetime displayFormat="HH:mm" formControlName="jamResepsi"></ion-datetime>
+          </ion-item>
+          <ion-item>
+            <ion-label stacked>Tempat Resepsi</ion-label>
+            <ion-input #tempatResepsi formControlName="tempatResepsi" type="text" (change)="elementChanged(tempatResepsi)" placeholder="isikan tempat Resepsi" [class.invalid]="!Form3.controls.tempatResepsi.valid && (tempatResepsiChanged || submitAttempt3)"></ion-input>
+          </ion-item>
+          <ion-item class="error-message" *ngIf="!Form3.controls.tempatResepsi.valid  && (tempatResepsiChanged || submitAttempt3)">
+            <p>Silakan isi tempat Resepsi</p>
+          </ion-item>
+          <button style="margin-top: 10px;" ion-button full color="light" (click)="save3()" [disabled]="!Form3.valid">Simpan</button>
+          <button style="margin-top: 10px;" ion-button full color="light" (click)="cancel()">Batal</button> </form>
+      </div>
+    </div>
+  </div>
+
+
+</ion-content>

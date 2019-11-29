@@ -1,0 +1,115 @@
+page-undangan-pernikahan {
+  ion-col div {
+    background-color: #f0f5ff;
+    padding: 5px;
+    text-align: center;
+  }
+
+  p {
+    font-size: 3.5vw;
+    position: absolute;
+    width: 100%;
+    color: #fff;
+  }
+
+  .empty {
+    font-size: 16px;
+    margin-top: 20px;
+    text-align: center;
+  }
+
+  a {
+    position: relative;
+    text-align: center;
+    display: block;
+  }
+
+  .pengantin {
+    position: relative;
+    text-align: center;
+    margin-top: 30px;
+    font-size: 6vw;
+    width: 100%;
+    font-weight: bold;
+    color: #fff;
+    text-decoration: underline;
+  }
+
+  .pengantin2 {
+    position: relative;
+    text-align: center;
+    font-size: 6vw;
+    width: 100%;
+    font-weight: bold;
+    color: #fff;
+    text-decoration: underline;
+  }
+
+  .ortu {
+    position: relative;
+    text-align: center;
+    font-size: 4.25vw;
+    width: 100%;
+    font-weight: bold;
+    color: #fff;
+  }
+
+  .isi {
+    position: relative;
+    text-align: center;
+    font-size: 3.5vw;
+    width: 100%;
+    color: #fff;
+  }
+
+  .title-tanggal {
+    position: absolute;
+    top: 55%;
+    font-size: 3.5vw;
+    width: 100%;
+    color: #fff;
+  }
+
+  .header-title {
+    position: absolute;
+    top: 8%;
+    font-size: 5vw;
+    width: 100%;
+    font-weight: bold;
+    color: #fff;
+  }
+
+  .header-subtitle {
+    font-size: 4vw;
+    position: absolute;
+    top: 32%;
+    width: 100%;
+    font-weight: bold;
+    color: #fff;
+  }
+
+  .header-content {
+    font-size: 3.5vw;
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    color: #fff;
+  }
+
+  .footer-header {
+    font-size: 3.5vw;
+    position: absolute;
+    top: 10%;
+    width: 100%;
+    color: #fff;
+  }
+
+  .footer-title {
+    position: absolute;
+    top: 30%;
+    font-size: 6vw;
+    width: 100%;
+    font-weight: bold;
+    color: #fff;
+  }
+}

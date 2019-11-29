@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      User Profile
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding="20px" id="page5" style="background-color:#000A83;">
+  <ion-card class="userProfile" *ngFor="let user of users | async">
+    <ion-list>
+      <ion-item color="none" id="userProfile-list-item12">
+        <div class="image2" *ngIf="user.user_photo.downloadURL === 'empty'">
+          <img src="assets/img/default.png" />
+        </div>
+        <div class="image2" *ngIf="user.user_photo.downloadURL != 'empty'">
+          <img [src]="user.user_photo.downloadURL" />
+        </div>
+        <h2>
+          {{user.user_name | titlecase }}
+        </h2>
+        <h3>
+          {{user.user_email}}
+        </h3>
+      </ion-item>
+      <ion-item id="userProfile-list-item-container6">
+        <div id="userProfile-markdown7" class="show-list-numbers-and-dots">
+          <p style="margin-top:0px;color:#000000;">
+            <strong>No Telepon</strong> {{user.user_notelp}}
+          </p>
+        </div>
+        <div id="userProfile-markdown7" class="show-list-numbers-and-dots">
+          <p style="margin-top:10px;color:#000000;">
+            <strong>Dibuat</strong> {{ user.user_created | date }}, {{ user.user_created | date:'hh:mm:ss a' }}
+          </p>
+        </div>
+        <div id="userProfile-markdown7" class="show-list-numbers-and-dots">
+          <p style="margin-top:0px;color:#000000;">
+            <strong>DiUbah </strong> {{ user.user_updated | date }}, {{ user.user_updated | date:'hh:mm:ss a' }}
+          </p>
+        </div>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+  <button (click)="updateProfile()" class="button2" ion-button full color="light">Ubah</button>
+  <button (click)="updateImageProfile()" class="button2" ion-button full color="light">Ganti Foto</button>
+  <button (click)="resetPwd()" class="button2" ion-button full color="light">Reset Password</button>
+</ion-content>

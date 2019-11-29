@@ -1,0 +1,48 @@
+<ion-menu [content]="mainContent">
+  <ion-header>
+    <ion-toolbar color="primary">
+      <ion-title>
+        Menu
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content style="background:url(assets/img/bg.jpg) repeat left;">
+    <ion-card *ngFor="let user of users | async">
+      <ion-list>
+        <ion-item color="light" menuClose="" on-click="goToUserProfile()">
+          <ion-avatar item-left *ngIf="user.user_photo.downloadURL === 'empty'">
+            <img src="assets/img/default.png" />
+          </ion-avatar>
+          <ion-avatar item-left *ngIf="user.user_photo.downloadURL != 'empty'">
+            <img [src]="user.user_photo.downloadURL" />
+          </ion-avatar>
+          <h2 style="color:#FFFFFF;">
+            {{user.user_name | titlecase }}
+          </h2>
+          <h3 style="color:#FFFFFF;">
+            {{user.user_email}}
+          </h3>
+        </ion-item>
+        <ion-item>
+          <div style="text-align:center; color:#000000;">
+            <p>
+              Selamat Datang Diaplikasi <br>
+              <strong>
+                Undangan Pernikahan
+              </strong>
+            </p>
+          </div>
+        </ion-item>
+      </ion-list>
+    </ion-card>
+    <div>
+      <a>
+        <img src="assets/img/logo.png" />
+      </a>
+    </div>
+    <button menuClose=""  ion-button color="light" full (click)="LogOut()">
+      Sign Out
+    </button>
+  </ion-content>
+</ion-menu>
+<ion-nav #mainContent [root]="rootPage"></ion-nav>

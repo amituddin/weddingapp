@@ -1,0 +1,104 @@
+<ion-header>
+  <ion-navbar color="batik">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      Undangan Pernikahan
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only>
+        <ion-icon name="ios-color-palette"></ion-icon>
+      </button>
+      <button ion-button icon-only>
+        <ion-icon name="send"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div class="empty" *ngIf="(undangan | async)?.length ===0">Input data undangan terlebih dahulu</div>
+  <div *ngFor="let data of undangan | async">
+    <div class="empty" *ngIf="data.alamatPria ==='empty'">Input data undangan terlebih dahulu</div>
+  </div>
+  <div *ngFor="let data of undangan | async" [ngStyle]="{background: 'url(assets/img/' + data.tema + ') no-repeat center'}">
+    <div *ngIf="data.julukanPria !='empty' && data.alamatPria != 'empty'">
+      <div class="spacer" style="width:320px;height:20px;"></div>
+      <div>
+        <a on-click="Next()">
+      <img src="assets/img/title.png" />
+		<div class="title-tanggal">{{ data.hariAkad}}, {{ data.tanggalAkad | date }}</div>
+    </a>
+      </div>
+      <div>
+        <a>
+      <img src="assets/img/header.png" />
+		<div class="header-title">Bismillahirahmanirahhim</div>
+		<div class="header-subtitle">Assala'mualaikum Warahmatullahi Wabarakatuh</div>
+		<div class="header-content" *ngIf="data.bahasa==='Indonesia'">Dengan memohon ridho serta rahmat dari Allah SWT perkenankan kami mengundang Bapak/ Ibu/ Saudara/ i agar dapat menghadiri pernikahan kami :</div>
+		<div class="header-content" *ngIf="data.bahasa==='Jawa'">Nuwun. Hawiyosipun serat punika sesulihing badan kawula sowan wonten ing ngarsa panjenengan sekaliyan. Mbok bilih Gusti Allah SWT hangganjar wilujeng ing samudayanipun, kula sebrayat badhe hanggadhahi niat ningkahaken yoga kula ingkang nami :</div>
+    </a>
+      </div>
+      <div>
+        <a>
+          <div class="pengantin">{{ data.namaPria}}</div>
+          <div class="ortu">Putra Bp. {{ data.bapakPria}} & Ibu. {{ data.ibuPria}}</div>
+          <div class="isi">{{ data.alamatPria}}</div>
+          <div><img src="assets/img/dan.png" /></div>
+          <div class="pengantin2">{{ data.namaWanita}}</div>
+          <div class="ortu">Putra Bp. {{ data.bapakWanita}} & Ibu. {{ data.ibuWanita}}</div>
+          <div class="isi">{{ data.alamatWanita}}</div>
+        </a>
+      </div>
+      <div>
+        <a>
+          <div class="spacer" style="width:320px;height:5px;" id="page-spacer5"></div>
+          <div class="ortu" *ngIf="data.bahasa==='Indonesia'">Akad Nikah:</div>
+          <div class="ortu" *ngIf="data.bahasa==='Jawa'">Ijab Qabul:</div>
+          <div class="isi">
+            <span *ngIf="data.bahasa==='Indonesia'">Hari</span><span *ngIf="data.bahasa==='Jawa'">Dinten</span> {{ data.hariAkad}}, {{ data.tanggalAkad | date }}
+            <br>
+            <span *ngIf="data.bahasa==='Indonesia'">Pukul</span><span *ngIf="data.bahasa==='Jawa'">Wanci Tabuh</span> {{ data.jamAkad}} WIB
+            <br>
+            <span *ngIf="data.bahasa==='Indonesia'">Bertempat</span><span *ngIf="data.bahasa==='Jawa'">Panggenan ing</span> {{ data.tempatAkad}}
+          </div>
+        </a>
+      </div>
+      <div>
+        <a>
+          <div class="spacer" style="width:320px;height:5px;" id="page-spacer5"></div>
+          <div class="ortu" *ngIf="data.bahasa==='Indonesia'">Resepsi Pernikahan:</div>
+          <div class="ortu" *ngIf="data.bahasa==='Jawa'">Resepsi Nikahan Puniko:</div>
+          <div class="isi">
+            <span *ngIf="data.bahasa==='Indonesia'">Hari</span><span *ngIf="data.bahasa==='Jawa'">Dinten</span> {{ data.hariResepsi}}, {{ data.tanggalResepsi | date }}
+            <br>
+            <span *ngIf="data.bahasa==='Indonesia'">Pukul</span><span *ngIf="data.bahasa==='Jawa'">Wanci Tabuh</span> {{ data.jamResepsi}} WIB
+            <br>
+            <span *ngIf="data.bahasa==='Indonesia'">Bertempat</span><span *ngIf="data.bahasa==='Jawa'">Panggenan ing</span> {{ data.tempatResepsi}}
+          </div>
+        </a>
+      </div>
+      <div>
+        <a>
+          <div class="spacer" style="width:320px;height:5px;" id="page-spacer5"></div>
+          <div class="isi" *ngIf="data.bahasa==='Indonesia'">
+            Merupakan Suatu Kehormatan dan kebahagiaan bagi kami apabila Bapak/ Ibu/ Saudara/ i berkenan hadir dan memberikan do'a restu kepada kami. Atas kehadiran dan do'a restu Bapak/ Ibu/ Saudara/ i kami ucapkan terimakasih.
+          </div>
+          <div class="isi" *ngIf="data.bahasa==='Jawa'">
+            Mbok menawi panjenengan sekaliyan wonten dhanganing penggalih sarta mboten pikantuk alangan sak tunggal punapa, kula aturi anyekseni lan angrawuhi khajat lan niat kula kasebat.Awit saking rawuhipun para sutresna, keparenga kula nelak aken agunging panuwun.
+          </div>
+          <div class="ortu">Wassala'mualaikum Warahmatullahi Wabarakatuh</div>
+        </a>
+      </div>
+      <div>
+        <a on-click="Next()">
+          <img src="assets/img/footer.png" />
+		        <div  *ngIf="data.bahasa==='Indonesia'" class="footer-header">Kami yang berbahagia,</div>
+		        <div  *ngIf="data.bahasa==='Jawa'" class="footer-header">Atur Taklim Kula,</div>
+          	<div class="footer-title">{{data.julukanPria}} & {{data.julukanWanita}}</div>
+	      </a>
+      </div>
+    </div>
+  </div>
+</ion-content>

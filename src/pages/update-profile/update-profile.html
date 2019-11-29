@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      Update Profile
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding id="page5" style="background-color:#000A83;">
+  <form [formGroup]="registerForm" (submit)="update()" novalidate>
+    <ion-item>
+      <ion-label stacked>Nama Lengkap</ion-label>
+      <ion-input #nama formControlName="nama" type="text" (change)="elementChanged(nama)" placeholder="isikan nama lengkap mu" [class.invalid]="!registerForm.controls.nama.valid && (namaChanged || submitAttempt)"></ion-input>
+    </ion-item>
+    <ion-item class="error-message" *ngIf="!registerForm.controls.nama.valid  && (namaChanged || submitAttempt)">
+      <p>Silakan isi nama anda yang sebenarnya</p>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Alamat Lengkap</ion-label>
+      <ion-input #alamat formControlName="alamat" type="text" (change)="elementChanged(alamat)" placeholder="isikan alamat lengkap mu" [class.invalid]="!registerForm.controls.alamat.valid && (alamatChanged || submitAttempt)"></ion-input>
+    </ion-item>
+    <ion-item class="error-message" *ngIf="!registerForm.controls.alamat.valid  && (alamatChanged || submitAttempt)">
+      <p>masukan alamat anda yang sebenarnya.</p>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>No Telp</ion-label>
+      <ion-input #notelp formControlName="notelp" type="text" (change)="elementChanged(notelp)" placeholder="isikan no telp mu" [class.invalid]="!registerForm.controls.notelp.valid && (notelpChanged || submitAttempt)"></ion-input>
+    </ion-item>
+    <button style="margin-top: 10px" ion-button block color="light" type="submit" [disabled]="!registerForm.valid">
+      Ubah
+    </button>
+  </form>
+</ion-content>

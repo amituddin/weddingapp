@@ -1,0 +1,83 @@
+<ion-header>
+  <ion-navbar color="danger">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      Data Undangan
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only solid>
+        <ion-icon name="apps"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content style="background:url(assets/img/data.jpg) repeat left;">
+  <div  *ngIf="users | async;let user; else loading">
+  <div  *ngFor="let user of users | async">
+  <div class="empty2" *ngIf="(undangan | async)?.length ===0">Input data undangan terlebih dahulu</div>
+  <div *ngFor="let data of undangan | async">
+    <div class="empty2" *ngIf="data.alamatPria ==='empty'">Input data undangan terlebih dahulu</div>
+  </div>
+
+  <ion-card *ngFor="let data of undangan | async" >
+    <div *ngIf="data.julukanPria !='empty' && data.alamatPria != 'empty'">
+    <ion-card-content>
+      <ion-card-title>
+        Undangan Batik
+      </ion-card-title>
+    </ion-card-content>
+    <ion-row no-padding>
+      <ion-col text-right>
+        <button ion-button full block clear color="danger" icon-left (click)="download()">
+          <ion-icon name='share-alt'></ion-icon>
+          Share
+        </button>
+      </ion-col>
+    </ion-row>
+    <ion-item class="status">
+      <h1>
+         Status
+      </h1>
+      <h2 *ngIf="user.buktipembayaran ==='false'">
+        Belum pesan
+      </h2>
+      <h2 *ngIf="user.buktipembayaran ==='true' && user.status ==='false' && user.user_photobuktipembayaran.status ==='false'">
+          Sudah di pesan <br><br>Silahkan<br> Upload Bukti Pembayaran
+        </h2>
+        <h2 *ngIf="user.user_photobuktipembayaran.status ==='true' && user.status ==='false'">
+          <br>Menunggu Konfirmasi Admin
+          <br><br>Jumlah Cetak : {{ user.jumlah }} 
+          <br>Total Harga : Rp{{ user.harga }},00
+        </h2>
+        <h2 *ngIf="user.status !='false'">
+Sudah Dikonfirmasi
+          </h2>
+    </ion-item>
+    </div>
+    <form [formGroup]="Form" novalidate *ngIf="user.buktipembayaran ==='false'">
+    <ion-item>
+      <ion-label stacked>Jumlah Cetak</ion-label>
+      <ion-input formControlName="jumlah" type="number" placeholder="Berapa Cetak Mu"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Total Biaya :</ion-label>
+      <ion-input formControlName="harga" type="text"></ion-input>
+    </ion-item>
+   </form>
+  </ion-card>
+  <div style="margin: 10px 20px 0px 20px;"  *ngIf="user.buktipembayaran ==='false'">
+      <button ion-button block color="light" (click)="pesan()" [disabled]="!Form.valid">Pesan</button>
+    </div>
+    <div style="margin: 10px 20px 0px 20px;" *ngIf="user.buktipembayaran ==='true' && user.status ==='false' && user.user_photobuktipembayaran.status ==='false'">
+      <button ion-button block color="primary" (click)="batal()">Batalkan Pesanan</button>
+    </div>
+    <div style="margin: 10px 20px 0px 20px;" *ngIf="user.buktipembayaran ==='true' && user.status ==='false' && user.user_photobuktipembayaran.status ==='false'">
+      <button ion-button block color="light" (click)="upload()">Upload Bukti</button>
+    </div>
+
+  </div></div>
+
+</ion-content>

@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      Update Image Profile
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding id="page5" style="background-color:#000A83;">
+  <form [formGroup]="registerForm" novalidate>
+    <div class="image-content">
+      <input id="file" formControlName="file" type="file" ngFileSelect (uploadOutput)="onUploadOutput($event)" [uploadInput]="uploadInput">
+    </div>
+    <div class="warning" *ngFor="let file of files">
+      <div *ngIf="file.type != 'image/png' && file.type != 'image/jpeg'">
+        <div *ngIf="fileName === file.name" class="information-error" contextmenu="">
+          Foto berformat .png / .jpg / .jpeg
+        </div>
+      </div>
+      <div *ngIf="file.size/1024 /1024 >= 5">
+        <div *ngIf="fileName === file.name" class="information-error" contextmenu="">
+          File tidak lebih dari 5Mb
+        </div>
+      </div>
+    </div>
+    <div class="full margin-top-20">
+      <button style="margin-top: 10px" ion-button block color="light" (click)="check()" [disabled]="files.length === 0">Check</button>
+    </div>
+    <span *ngIf="checkdone !='true'">
+      <button  style="margin-top: 10px" ion-button block color="light" [disabled]="checkdone !='true'" (click)="save()">Update</button>
+    </span>
+    <span *ngIf="checkdone ==='true'">
+    <span  *ngFor="let file of files" >
+      <button  style="margin-top: 10px" ion-button block color="light" *ngIf="fileName === file.name"  [disabled]="!registerForm.valid || file.type != 'image/png' && file.type != 'image/jpeg'  || file.size/1024 /1024 >= 5" (click)="update(file.size)">Update</button>
+    </span></span>
+  </form>
+</ion-content>
