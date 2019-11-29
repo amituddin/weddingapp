@@ -1,26 +1,8 @@
-This is a starter template for [Ionic](http://ionicframework.com/docs/) projects.
+# weddingapp
+Create Online Marriage Invitation Card
 
-## How to use this template
+Program Language: Ionic, Firebase
 
-*This template does not work on its own*. The shared files for each starter are found in the [ionic2-app-base repo](https://github.com/driftyco/ionic2-app-base).
+Screenshot Goals:
 
-To use this template, either create a new ionic project using the ionic node.js utility, or copy the files from this repository into the [Starter App Base](https://github.com/driftyco/ionic2-app-base).
-
-### With the Ionic CLI:
-
-Take the name after `ionic2-starter-`, and that is the name of the template to be used when using the `ionic start` command below:
-
-```bash
-$ sudo npm install -g ionic cordova
-$ ionic start myTabs tabs
-```
-
-Then, to run it, cd into `myTabs` and run:
-
-```bash
-$ ionic cordova platform add ios
-$ ionic cordova run ios
-```
-
-Substitute ios for android if not on a Mac.
-
+![alt text](https://firebasestorage.googleapis.com/v0/b/monkey-teknologi-indonesia.appspot.com/o/Ngodings%2FportfoliosList%2FscreenshotApp%2FgR5Qp8KQHubRZ6jjg7NR%2F20191125-wADAfu-weddingapp-mobile.png?alt=media&token=4597ff66-5e7e-49cc-952e-acf271966b48)
